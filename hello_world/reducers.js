@@ -4,10 +4,10 @@ const initialState = {
     value: 0
 };
 
-export const rootReducer = (state = initialState, action) => {
+export const helloWorldReducer = (state = initialState, action) => {
     switch (action.type) {
         case constants.SET_VALUE:
-            console.log('Look ma, Redux!! New value = ' + action.value);
+            console.log('Reducer: new value = ' + action.value);
             return { ...state, value: action.value };
         default:
             return state;

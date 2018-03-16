@@ -6,7 +6,7 @@ export const Output = ({ value }) => (
 );
 
 export const TwiceTheOutput = ({ value }) => (
-    <Text>The value is {2 * value}</Text>
+    <Text>The double value is {2 * value}</Text>
 );
 
 export class MyButton extends Component {
