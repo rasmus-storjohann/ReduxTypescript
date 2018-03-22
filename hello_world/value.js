@@ -10,6 +10,10 @@ export const decrement = value => ({
     value: value - 1,
 });
 
+export const mapper = state => {
+    return { value: state.value };
+};
+
 export const valueReducer = (state = 0, action) => {
     if (action.value !== action.value || action.type !== SET_VALUE) {
         return state;
