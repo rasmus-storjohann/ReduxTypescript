@@ -3,7 +3,8 @@ import { Alert, View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { Output, TwiceTheOutput, MyButton, Blink, Greeting } from './components';
 import { store } from '../store';
-import * as actions from './actions'
+import { increment, decrement } from './value';
+import { setText } from './text';
 
 const mapValue = state => {
     return { value: state.value };
@@ -22,13 +23,13 @@ export const HelloWorldContainer = () => (
         <Greeting name='Valeera' />
         <Blink text='I love to blink' />
         <View style={{ flexDirection: 'row', padding: 20 }}>
-            <MyButton title='Increment' onClick={() => store.dispatch(actions.increment(store.getState().value))} />
-            <MyButton title='Decrement' onClick={() => store.dispatch(actions.decrement(store.getState().value))} />
+            <MyButton title='Increment' onClick={() => store.dispatch(increment(store.getState().value))} />
+            <MyButton title='Decrement' onClick={() => store.dispatch(decrement(store.getState().value))} />
         </View>
         <MyValueOutput />
         <MyTwiceValueOutput />
         <View>
-            <TextInput onChangeText={(text) => store.dispatch(actions.setText(text))} />
+            <TextInput onChangeText={(text) => store.dispatch(setText(text))} />
             <MyTextOutput />
         </View>
     </View>
