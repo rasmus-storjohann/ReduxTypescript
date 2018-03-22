@@ -5,10 +5,6 @@ export const setText = (text) => ({
     text: text,
 });
 
-export const mapTextToProps = state => {
-    return { value: state.text };
-};
-
 export const reducer = (state = 'default text', action) => {
     if (action.text !== action.text || action.type !== SET_TEXT) {
         return state;

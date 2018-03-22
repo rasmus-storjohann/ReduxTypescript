@@ -6,8 +6,8 @@ import { store } from '../store';
 import * as value from './value';
 import * as text from './text';
 
-const ContainerBla = (props) => {
-    const { value, incrementThis, decrementThis } = props;
+const MyContainer = (props) => {
+    const { value, incrementThis, decrementThis, changeThis } = props;
     return (
         <View style={{ alignItems: 'center' }}>
             <Greeting name='Valeera' />
@@ -16,25 +16,35 @@ const ContainerBla = (props) => {
                 <MyButton title='Increment' onPress={() => incrementThis(value)} />
                 <MyButton title='Decrement' onPress={() => decrementThis(value)} />
             </View>
-            <MyValueOutput />
-            <MyTwiceValueOutput />
+            <ConnectedValueOutput />
+            <ConnectedTwiceValueOutput />
             <View>
-                <TextInput onChangeText={(newText) => store.dispatch(text.setText(newText))} />
-                <MyTextOutput />
+                <TextInput onChangeText={(newText) => changeThis(newText)} />
+                <ConnectedTextOutput />
             </View>
         </View>
     );
 };
 
-const MyValueOutput = connect(value.mapValueToProps)(Output);
-const MyTwiceValueOutput = connect(value.mapValueToProps)(TwiceTheOutput);
-const MyTextOutput = connect(text.mapTextToProps)(Output);
+const mapValueToProps = (state) => ({
+    value: state.value
+});
+
+const mapTextToProps = (state) => ({
+    value: state.text
+});
 
 const mapDispatchToProps = (dispatch) => {
     return {
         incrementThis: (newValue) => dispatch(value.increment(newValue)),
         decrementThis: (newValue) => dispatch(value.decrement(newValue)),
+        changeThis: (newText) => dispatch(text.setText(newText)),
     };
 };
 
-export const Container = connect(value.mapValueToProps, mapDispatchToProps)(ContainerBla);
+const ConnectedValueOutput = connect(mapValueToProps)(Output);
+const ConnectedTwiceValueOutput = connect(mapValueToProps)(TwiceTheOutput);
+const ConnectedTextOutput = connect(mapTextToProps)(Output);
+const ConnectedContainer = connect(mapValueToProps, mapDispatchToProps)(MyContainer);
+
+export const Container = ConnectedContainer;
