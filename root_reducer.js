@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import * as constants from './constants';
-import { valueReducer } from './hello_world/value';
-import { textReducer } from './hello_world/text';
+import * as value from './hello_world/value';
+import * as text from './hello_world/text';
 
 export const rootReducer = combineReducers({
-    value: valueReducer,
-    text: textReducer,
+    value: value.reducer,
+    text: text.reducer,
 });

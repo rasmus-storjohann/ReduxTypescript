@@ -25,7 +25,7 @@ export class Blink extends Component {
             this.setState(previousState => {
                 return { isShowingText: !previousState.isShowingText };
             });
-        }, 1000);
+        }, 100);
     }
 
     render() {

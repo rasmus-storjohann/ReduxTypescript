@@ -1,4 +1,4 @@
-import { SET_VALUE } from '../constants';
+const SET_VALUE = 'SET_VALUE';
 
 export const increment = (value) => ({
     type: SET_VALUE,
@@ -14,7 +14,7 @@ export const mapper = state => {
     return { value: state.value };
 };
 
-export const valueReducer = (state = 0, action) => {
+export const reducer = (state = 0, action) => {
     if (action.value !== action.value || action.type !== SET_VALUE) {
         return state;
     }

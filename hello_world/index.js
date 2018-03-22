@@ -10,7 +10,7 @@ const MyValueOutput = connect(value.mapper)(Output);
 const MyTwiceValueOutput = connect(value.mapper)(TwiceTheOutput);
 const MyTextOutput = connect(text.mapper)(Output);
 
-export const HelloWorldContainer = () => (
+export const Container = () => (
     <View style={{ alignItems: 'center' }}>
         <Greeting name='Valeera' />
         <Blink text='I love to blink' />

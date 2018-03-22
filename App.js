@@ -1,16 +1,10 @@
-import React, { Component } from 'react';
-import { Alert, View, Text, TextInput, Button } from 'react-native';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { HelloWorldContainer } from './hello_world/containers';
+import * as hello_world from './hello_world';
 
-
-export default class HelloWorldApp extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <HelloWorldContainer />
-      </Provider>
-    );
-  }
-}
+export default helloWorld = () => (
+  <Provider store={store}>
+    <hello_world.Container />
+  </Provider>
+);
