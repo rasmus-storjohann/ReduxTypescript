@@ -9,27 +9,18 @@ export const TwiceTheOutput = ({ value }) => (
     <Text>The double value is {2 * value}</Text>
 );
 
-export class MyButton extends Component {
-    render() {
-        return (
-            <Button onPress={this.props.onClick} title={this.props.title} />
-        );
-    }
-}
+export const MyButton = ({ onClick, title }) => (
+    <Button onPress={onClick} title={title} />
+);
 
-export class Greeting extends Component {
-    render() {
-        return (
-            <Text>Hello {this.props.name}!</Text>
-        );
-    }
-}
+export const Greeting = ({ name }) => (
+    <Text>Hello {name}!</Text>
+);
 
 export class Blink extends Component {
     constructor(props) {
         super(props);
         this.state = { isShowingText: true };
-
         setInterval(() => {
             this.setState(previousState => {
                 return { isShowingText: !previousState.isShowingText };

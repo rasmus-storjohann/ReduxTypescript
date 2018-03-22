@@ -13,22 +13,19 @@ const mapStateToProps = state => {
 const ConnectedOutput = connect(mapStateToProps)(Output);
 const ConnectedTwiceTheOutput = connect(mapStateToProps)(TwiceTheOutput);
 
-class HelloWorldContainer extends Component {
-  render() {
-    return (
-      <View style={{ alignItems: 'center' }}>
-        <Greeting name='Valeera' />
-        <Blink text='I love to blink' />
-        <View style={{ flexDirection: 'row', padding: 20 }}>
-          <MyButton title='Increment' onClick={() => store.dispatch(actions.increment(store.getState().value))} />
-          <MyButton title='Decrement' onClick={() => store.dispatch(actions.decrement(store.getState().value))} />
-        </View>
-        <ConnectedOutput value={store.getState().value} />
-        <ConnectedTwiceTheOutput value={store.getState().value} />
-      </View>
-    );
-  }
-}
+const HelloWorldContainer = () => (
+  <View style={{ alignItems: 'center' }}>
+    <Greeting name='Valeera' />
+    <Blink text='I love to blink' />
+    <View style={{ flexDirection: 'row', padding: 20 }}>
+      <MyButton title='Increment' onClick={() => store.dispatch(actions.increment(store.getState().value))} />
+      <MyButton title='Decrement' onClick={() => store.dispatch(actions.decrement(store.getState().value))} />
+    </View>
+    <ConnectedOutput value={store.getState().value} />
+    <ConnectedTwiceTheOutput value={store.getState().value} />
+  </View>
+);
+
 
 export default class HelloWorldApp extends Component {
   render() {
