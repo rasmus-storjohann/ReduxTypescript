@@ -1,22 +1,11 @@
-import React from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
 import { Output, TwiceTheOutput, MyButton, Blink, Greeting } from './components';
+
+import React from 'react';
+import { View, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 
-const mapValueToProps = (state) => ({
-    value: state.value,
-});
-
-const mapTextToProps = (state) => ({
-    value: state.text,
-});
-
-const ConnectedValueOutput = connect(mapValueToProps)(Output);
-const ConnectedTwiceValueOutput = connect(mapValueToProps)(TwiceTheOutput);
-const ConnectedTextOutput = connect(mapTextToProps)(Output);
-
 export const MyContainer = (props) => {
-    const { value, incrementThis, decrementThis, changeThis } = props;
+    const { value, text, incrementThis, decrementThis, changeThis } = props;
     return (
         <View style={{ alignItems: 'center' }}>
             <Greeting name='Valeera' />
@@ -25,11 +14,11 @@ export const MyContainer = (props) => {
                 <MyButton title='Increment' onPress={() => incrementThis(value)} />
                 <MyButton title='Decrement' onPress={() => decrementThis(value)} />
             </View>
-            <ConnectedValueOutput />
-            <ConnectedTwiceValueOutput />
+            <Output value={value} />
+            <TwiceTheOutput value={value} />
             <View>
-                <TextInput onChangeText={(newText) => changeThis(newText)} />
-                <ConnectedTextOutput />
+                <TextInput value={text} onChangeText={(newText) => changeThis(newText)} />
+                <Output value={text} />
             </View>
         </View>
     );

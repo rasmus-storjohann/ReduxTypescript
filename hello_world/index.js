@@ -4,8 +4,9 @@ import { MyContainer } from './containers';
 import * as value from './value';
 import * as text from './text';
 
-const mapValueToProps = (state) => ({
+const mapStateToProps = (state) => ({
     value: state.value,
+    text: state.text,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -16,4 +17,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export const Container = connect(mapValueToProps, mapDispatchToProps)(MyContainer);
+export const Container = connect(mapStateToProps, mapDispatchToProps)(MyContainer);
