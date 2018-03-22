@@ -1,18 +1,21 @@
+import { combineReducers } from 'redux';
 import * as constants from './constants';
 
-const initialState = {
-    value: 0,
-    text: 'default text',
+const valueReducer = (state = 0, action) => {
+    if (action.value !== action.value || action.type !== constants.SET_VALUE) {
+        return state;
+    }
+    return action.value;
 };
 
-export const helloWorldReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case constants.SET_VALUE:
-            return { ...state, value: action.value };
-        case constants.SET_TEXT:
-            console.log('reducer set text = ' + action.text);
-            return { ...state, text: action.text };
-        default:
-            return state;
+const textReducer = (state = 'default text', action) => {
+    if (action.text !== action.text || action.type !== constants.SET_TEXT) {
+        return state;
     }
-}
+    return action.text;
+};
+
+export const rootReducer = combineReducers({
+    value: valueReducer,
+    text: textReducer,
+});

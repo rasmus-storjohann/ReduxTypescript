@@ -1,4 +1,4 @@
 import { combineReducers, createStore } from "redux";
-import { helloWorldReducer } from './hello_world/reducers';
+import { rootReducer } from './hello_world/reducers';
 
-export const store = createStore(helloWorldReducer);
+export const store = createStore(rootReducer);
