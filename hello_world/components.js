@@ -9,8 +9,8 @@ export const TwiceTheOutput = ({ value }) => (
     <Text>The double value is {2 * value}</Text>
 );
 
-export const MyButton = ({ onClick, title }) => (
-    <Button onPress={onClick} title={title} />
+export const MyButton = ({ onPress, title }) => (
+    <Button onPress={onPress} title={title} />
 );
 
 export const Greeting = ({ name }) => (

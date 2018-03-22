@@ -5,7 +5,7 @@ export const setText = (text) => ({
     text: text,
 });
 
-export const mapStateToProps = state => {
+export const mapTextToProps = state => {
     return { value: state.text };
 };
 
