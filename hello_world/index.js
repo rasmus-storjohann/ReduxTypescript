@@ -6,9 +6,9 @@ import { store } from '../store';
 import * as value from './value';
 import * as text from './text';
 
-const MyValueOutput = connect(value.mapper)(Output);
-const MyTwiceValueOutput = connect(value.mapper)(TwiceTheOutput);
-const MyTextOutput = connect(text.mapper)(Output);
+const MyValueOutput = connect(value.mapStateToProps)(Output);
+const MyTwiceValueOutput = connect(value.mapStateToProps)(TwiceTheOutput);
+const MyTextOutput = connect(text.mapStateToProps)(Output);
 
 export const Container = () => (
     <View style={{ alignItems: 'center' }}>

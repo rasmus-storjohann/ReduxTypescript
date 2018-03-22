@@ -10,7 +10,7 @@ export const decrement = value => ({
     value: value - 1,
 });
 
-export const mapper = state => {
+export const mapStateToProps = state => {
     return { value: state.value };
 };
 
