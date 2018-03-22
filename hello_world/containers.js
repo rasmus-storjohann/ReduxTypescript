@@ -5,12 +5,17 @@ import { Output, TwiceTheOutput, MyButton, Blink, Greeting } from './components'
 import { store } from '../store';
 import * as actions from './actions'
 
-const mapStateToProps = state => {
+const mapValue = state => {
     return { value: state.value };
 };
 
-const ConnectedOutput = connect(mapStateToProps)(Output);
-const ConnectedTwiceTheOutput = connect(mapStateToProps)(TwiceTheOutput);
+const mapText = state => {
+    return { value: state.text };
+};
+
+const MyValueOutput = connect(mapValue)(Output);
+const MyTwiceValueOutput = connect(mapValue)(TwiceTheOutput);
+const MyTextOutput = connect(mapText)(Output);
 
 export const HelloWorldContainer = () => (
     <View style={{ alignItems: 'center' }}>
@@ -20,7 +25,11 @@ export const HelloWorldContainer = () => (
             <MyButton title='Increment' onClick={() => store.dispatch(actions.increment(store.getState().value))} />
             <MyButton title='Decrement' onClick={() => store.dispatch(actions.decrement(store.getState().value))} />
         </View>
-        <ConnectedOutput value={store.getState().value} />
-        <ConnectedTwiceTheOutput value={store.getState().value} />
+        <MyValueOutput />
+        <MyTwiceValueOutput />
+        <View>
+            <TextInput onChangeText={(text) => store.dispatch(actions.setText(text))} />
+            <MyTextOutput />
+        </View>
     </View>
 );

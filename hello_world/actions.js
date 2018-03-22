@@ -1,19 +1,16 @@
 import * as constants from './constants';
 
-export const increment = (value) => {
-    const newValue = value + 1;
-    console.log('Created increment action with value = ' + newValue);
-    return {
-        type: constants.SET_VALUE,
-        value: newValue,
-    };
-}
+export const setText = (text) => ({
+    type: constants.SET_TEXT,
+    text: text,
+});
 
-export const decrement = value => {
-    const newValue = value - 1;
-    console.log('Created increment action with value = ' + newValue);
-    return {
-        type: constants.SET_VALUE,
-        value: newValue,
-    }
-}
+export const increment = (value) => ({
+    type: constants.SET_VALUE,
+    value: value + 1,
+});
+
+export const decrement = value => ({
+    type: constants.SET_VALUE,
+    value: value - 1,
+});
