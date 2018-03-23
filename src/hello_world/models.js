@@ -1,5 +1,3 @@
-// @flow
-
 const SET_VALUE = 'HELLO WORLD: SET VALUE';
 
 export class Counter {
@@ -17,12 +15,12 @@ export class Counter {
 
     getValue = () => this._counterValue;
 
-    increment = () => ({
+    incrementAction = () => ({
         type: SET_VALUE,
         value: this._counterValue + 1,
     });
 
-    decrement = () => ({
+    decrementAction = () => ({
         type: SET_VALUE,
         value: this._counterValue - 1,
     });
@@ -45,7 +43,7 @@ export class Message {
 
     getMessage = () => this._message;
 
-    setMessage = (message) => ({
+    setMessageAction = (message) => ({
         type: SET_TEXT,
         value: message,
     });

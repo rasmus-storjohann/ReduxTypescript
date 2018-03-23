@@ -8,9 +8,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    incrementThis: (value) => dispatch(value.increment()),
-    decrementThis: (value) => dispatch(value.decrement()),
-    changeThis: (text, newText) => dispatch(text.setMessage(newText)),
+    increment: (prop) => dispatch(prop.incrementAction()),
+    decrement: (prop) => dispatch(prop.decrementAction()),
+    setMessage: (prop, message) => dispatch(prop.setMessageAction(message)),
 });
 
 export const Container = connect(mapStateToProps, mapDispatchToProps)(MyContainer);
