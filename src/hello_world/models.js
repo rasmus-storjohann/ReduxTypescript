@@ -1,3 +1,5 @@
+// @flow
+
 const SET_VALUE = 'HELLO WORLD: SET VALUE';
 
 export class Counter {
@@ -11,7 +13,7 @@ export class Counter {
 
     constructor(counterValue) {
         this._counterValue = counterValue;
-    }
+    };
 
     getValue = () => this._counterValue;
 
@@ -39,7 +41,7 @@ export class Message {
 
     constructor(message) {
         this._message = message;
-    }
+    };
 
     getMessage = () => this._message;
 
@@ -47,4 +49,4 @@ export class Message {
         type: SET_TEXT,
         value: message,
     });
-}
+};
