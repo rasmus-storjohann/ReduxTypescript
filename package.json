@@ -11,6 +11,7 @@
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "postinstall": "bin/postinstall.sh",
+    "lint": "tslint src/**/*.ts",
     "tsc": "tsc",
     "clean": "rimraf artifacts",
     "build": "yarn run clean && yarn run tsc",

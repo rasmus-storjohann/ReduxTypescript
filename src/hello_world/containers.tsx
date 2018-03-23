@@ -1,7 +1,6 @@
 import { Output, TwiceTheOutput, MyButton, Blink, Greeting } from './components';
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import { connect } from 'react-redux';
 
 export const MyContainer = (props) => {
     const { value, text, increment, decrement, setMessage } = props;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, View, Text, TextInput, Button } from 'react-native';
+import { Text, Button } from 'react-native';
 
 export const Output = ({ value }) => (
     <Text>The value is {value}</Text>
@@ -17,12 +17,26 @@ export const Greeting = ({ name }) => (
     <Text>Hello {name}!</Text>
 );
 
+
+interface BlinkState {
+    isShowingText: boolean;
+}
+
+
+interface BlinkProps {
+    text: string;
+}
+
+
 export class Blink extends Component {
-    constructor(props) {
+    state: BlinkState;
+    props: BlinkProps;
+
+    constructor(props: BlinkProps) {
         super(props);
         this.state = { isShowingText: true };
         setInterval(() => {
-            this.setState(previousState => {
+            this.setState((previousState: BlinkState) => {
                 return { isShowingText: !previousState.isShowingText };
             });
         }, 100);
