@@ -1,8 +1,17 @@
 import { Output, TwiceTheOutput, MyButton, Blink, Greeting } from './components';
 import React from 'react';
 import { View, TextInput } from 'react-native';
+import { Counter, Message } from './models';
 
-export const MyContainer = (props) => {
+interface Props {
+    value: Counter;
+    text: Message;
+    increment: (prop: Counter) => any;
+    decrement: (prop: Counter) => any;
+    setMessage: (prop: Message, message: string) => any;
+}
+
+export const MyContainer: React.SFC<Props> = (props: Props) => {
     const { value, text, increment, decrement, setMessage } = props;
     return (
         <View style={{ alignItems: 'center' }}>
