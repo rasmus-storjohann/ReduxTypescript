@@ -1,15 +1,21 @@
 import { connect } from 'react-redux';
 import { MyContainer } from './containers';
+import { Counter, Message } from './models';
 
-const mapStateToProps = (state) => ({
+interface StoreState {
+    value: Counter;
+    text: Message;
+}
+
+const mapStateToProps = (state: StoreState) => ({
     value: state.value,
     text: state.text,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    increment: (prop) => dispatch(prop.incrementAction()),
-    decrement: (prop) => dispatch(prop.decrementAction()),
-    setMessage: (prop, message) => dispatch(prop.setMessageAction(message)),
+    increment: (prop: Counter) => dispatch(prop.incrementAction()),
+    decrement: (prop: Counter) => dispatch(prop.decrementAction()),
+    setMessage: (prop: Message, message: string) => dispatch(prop.setMessageAction(message)),
 });
 
-export const Container = connect(mapStateToProps, mapDispatchToProps)(MyContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MyContainer);

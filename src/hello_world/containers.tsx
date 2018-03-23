@@ -11,7 +11,7 @@ interface Props {
     setMessage: (prop: Message, message: string) => any;
 }
 
-export const MyContainer: React.SFC<Props> = (props: Props) => {
+export const MyContainer: React.SFC<Props> = (props) => {
     const { value, text, increment, decrement, setMessage } = props;
     return (
         <View style={{ alignItems: 'center' }}>

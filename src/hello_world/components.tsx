@@ -1,32 +1,45 @@
 import React, { Component } from 'react';
 import { Text, Button } from 'react-native';
 
-export const Output = ({ value }) => (
+interface OutputProp {
+    value: number | string;
+}
+
+export const Output: React.SFC<OutputProp> = ({ value }) => (
     <Text>The value is {value}</Text>
 );
 
-export const TwiceTheOutput = ({ value }) => (
+interface TwiceTheOutputProp {
+    value: number;
+}
+
+export const TwiceTheOutput: React.SFC<TwiceTheOutputProp> = ({ value }) => (
     <Text>The double value is {2 * value}</Text>
 );
 
-export const MyButton = ({ onPress, title }) => (
+interface MyButtonProp {
+    onPress: () => any,
+    title: string,
+}
+
+export const MyButton: React.SFC<MyButtonProp> = ({ onPress, title }) => (
     <Button onPress={onPress} title={title} />
 );
 
-export const Greeting = ({ name }) => (
+interface GreetingProp {
+    name: string;
+}
+export const Greeting: React.SFC<GreetingProp> = ({ name }) => (
     <Text>Hello {name}!</Text>
 );
-
 
 interface BlinkProps {
     text: string;
 }
 
-
 interface BlinkState {
     isShowingText: boolean;
 }
-
 
 export class Blink extends Component<BlinkProps, BlinkState> {
     constructor(props: BlinkProps) {
