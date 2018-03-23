@@ -1,5 +1,4 @@
 import { Output, TwiceTheOutput, MyButton, Blink, Greeting } from './components';
-
 import React from 'react';
 import { View, TextInput } from 'react-native';
 import { connect } from 'react-redux';
@@ -14,11 +13,11 @@ export const MyContainer = (props) => {
                 <MyButton title='Increment' onPress={() => incrementThis(value)} />
                 <MyButton title='Decrement' onPress={() => decrementThis(value)} />
             </View>
-            <Output value={value} />
-            <TwiceTheOutput value={value} />
+            <Output value={value.getValue()} />
+            <TwiceTheOutput value={value.getValue()} />
             <View>
-                <TextInput value={text} onChangeText={(newText) => changeThis(newText)} />
-                <Output value={text} />
+                <TextInput value={text.getMessage()} onChangeText={(newText) => changeThis(text, newText)} />
+                <Output value={text.getMessage()} />
             </View>
         </View>
     );
