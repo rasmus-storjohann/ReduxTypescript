@@ -13,16 +13,30 @@
     "postinstall": "bin/postinstall.sh",
     "lint": "tslint src/**/*.ts",
     "tsc": "tsc",
+    "jest": "jest --coverage",
     "clean": "rimraf artifacts",
     "build": "yarn run clean && yarn run tsc",
+    "test": "yarn run build && yarn run jest",
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js"
+    "ios": "react-native-scripts ios"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "react-native",
+    "testMatch": [
+      "<rootDir>/artifacts/**/tests/test*.js"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text-summary",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "artifacts/**/*.js",
+      "!artifacts/**/test*.js",
+      "!artifacts/**/*.index.js"
+    ]
   },
   "dependencies": {
     "@types/jest": "^22.2.2",

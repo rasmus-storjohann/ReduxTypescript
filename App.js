@@ -1,3 +1,3 @@
-import { application } from './artifacts/application';
+import { Application } from './artifacts/application';
 
-export default application;
+export default Application;

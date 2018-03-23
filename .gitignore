@@ -8,6 +8,7 @@
 
 # compiled code
 /artifacts
+/coverage
 
 # misc
 .env.local
