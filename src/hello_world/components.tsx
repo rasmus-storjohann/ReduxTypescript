@@ -18,20 +18,17 @@ export const Greeting = ({ name }) => (
 );
 
 
-interface BlinkState {
-    isShowingText: boolean;
-}
-
-
 interface BlinkProps {
     text: string;
 }
 
 
-export class Blink extends Component {
-    state: BlinkState;
-    props: BlinkProps;
+interface BlinkState {
+    isShowingText: boolean;
+}
 
+
+export class Blink extends Component<BlinkProps, BlinkState> {
     constructor(props: BlinkProps) {
         super(props);
         this.state = { isShowingText: true };
