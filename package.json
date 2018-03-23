@@ -13,7 +13,7 @@
     "postinstall": "bin/postinstall.sh",
     "lint": "tslint src/**/*.ts",
     "tsc": "tsc",
-    "jest": "jest --coverage",
+    "jest": "jest",
     "clean": "rimraf artifacts",
     "build": "yarn run clean && yarn run tsc",
     "test": "yarn run build && yarn run jest",
@@ -26,16 +26,6 @@
     "preset": "react-native",
     "testMatch": [
       "<rootDir>/artifacts/**/tests/test*.js"
-    ],
-    "coverageDirectory": "coverage",
-    "coverageReporters": [
-      "text-summary",
-      "html"
-    ],
-    "collectCoverageFrom": [
-      "artifacts/**/*.js",
-      "!artifacts/**/test*.js",
-      "!artifacts/**/*.index.js"
     ]
   },
   "dependencies": {
