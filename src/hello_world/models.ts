@@ -16,7 +16,7 @@ export class Counter {
         return new Counter(action.value);
     }
 
-    constructor(counterValue) {
+    constructor(counterValue: number) {
         this._counterValue = counterValue;
     }
 
@@ -65,7 +65,7 @@ export class Message {
         return this._message;
     }
 
-    setMessageAction(message): MessageAction {
+    setMessageAction(message: string): MessageAction {
         return {
             type: Message.SET_TEXT,
             value: message,
