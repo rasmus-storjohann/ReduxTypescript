@@ -1,38 +1,27 @@
 import { SET_COUNTER } from '../application/constants';
 
-export const increment = (store: Store) => ({
+export const increment = (store: number) => ({
     type: SET_COUNTER,
-    payload: store.value() + 1,
+    payload: store + 1,
 });
 
 export type SetCounterAction = ReturnType<typeof increment>;
 
-export const decrement = (store: Store): SetCounterAction => ({
+export const decrement = (store: number): SetCounterAction => ({
     type: SET_COUNTER,
-    payload: store.value() - 1
+    payload: store - 1
 });
 
-export const reducer = (state: Store = new Store(0), action: SetCounterAction): Store => {
+export const reducer = (state: number = 0, action: SetCounterAction): number => {
     if (action.payload !== action.payload) {
         return state;
     }
     switch (action.type) {
         case SET_COUNTER:
-            return new Store(action.payload);
+            return action.payload;
         default:
             return state;
     }
 }
 
-export class Store {
-
-    private _counterValue: number;
-
-    constructor(counterValue: number) {
-        this._counterValue = counterValue;
-    }
-
-    value(): number {
-        return this._counterValue;
-    }
-}
+export type Store = number;
