@@ -1,13 +1,13 @@
 import { SET_COUNTER } from '../application/constants';
 
-export const incrementAction = (store: Store) => ({
+export const increment = (store: Store) => ({
     type: SET_COUNTER,
     value: store.value() + 1,
 });
 
-export type SetCounterAction = ReturnType<typeof incrementAction>;
+export type SetCounterAction = ReturnType<typeof increment>;
 
-export const decrementAction = (store: Store): SetCounterAction => ({
+export const decrement = (store: Store): SetCounterAction => ({
     type: SET_COUNTER,
     value: store.value() - 1
 });

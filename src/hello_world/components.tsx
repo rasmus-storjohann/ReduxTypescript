@@ -18,7 +18,7 @@ export const TwiceTheOutput: React.SFC<TwiceTheOutputProp> = ({ value }) => (
 );
 
 interface MyButtonProp {
-    onPress: () => any,
+    onPress: () => void,
     title: string,
 }
 

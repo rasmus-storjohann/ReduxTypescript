@@ -13,5 +13,5 @@ export const rootReducer = combineReducers({
 });
 
 export interface Dispatch {
-    (action: counter.SetCounterAction | message.MessageAction): any;
+    (action: counter.SetCounterAction | message.MessageAction): void;
 }

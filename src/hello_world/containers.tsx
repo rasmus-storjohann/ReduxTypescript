@@ -7,9 +7,9 @@ import * as message from './message';
 interface Props {
     value: counter.Store;
     text: message.Store;
-    increment: (prop: counter.Store) => any;
-    decrement: (prop: counter.Store) => any;
-    setMessage: (message: string) => any;
+    increment: (prop: counter.Store) => void;
+    decrement: (prop: counter.Store) => void;
+    setMessage: (message: string) => void;
 }
 
 export const MyContainer: React.SFC<Props> = (props) => {
