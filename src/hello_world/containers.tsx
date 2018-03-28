@@ -1,14 +1,15 @@
 import { Output, TwiceTheOutput, MyButton, Blink, Greeting } from './components';
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import { Counter, Message } from './models';
+import * as counter from './counter';
+import * as message from './message';
 
 interface Props {
-    value: Counter;
-    text: Message;
-    increment: (prop: Counter) => any;
-    decrement: (prop: Counter) => any;
-    setMessage: (prop: Message, message: string) => any;
+    value: counter.Store;
+    text: message.Store;
+    increment: (prop: counter.Store) => any;
+    decrement: (prop: counter.Store) => any;
+    setMessage: (message: string) => any;
 }
 
 export const MyContainer: React.SFC<Props> = (props) => {
@@ -21,11 +22,11 @@ export const MyContainer: React.SFC<Props> = (props) => {
                 <MyButton title='Increment' onPress={() => increment(value)} />
                 <MyButton title='Decrement' onPress={() => decrement(value)} />
             </View>
-            <Output value={value.getValue()} />
-            <TwiceTheOutput value={value.getValue()} />
+            <Output value={value.value()} />
+            <TwiceTheOutput value={value.value()} />
             <View>
-                <TextInput value={text.getMessage()} onChangeText={(newText) => setMessage(text, newText)} />
-                <Output value={text.getMessage()} />
+                <TextInput value={text.message()} onChangeText={(newText) => setMessage(newText)} />
+                <Output value={text.message()} />
             </View>
         </View>
     );
