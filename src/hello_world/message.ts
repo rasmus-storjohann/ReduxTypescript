@@ -1,10 +1,5 @@
 import { SET_MESSAGE_TEXT } from '../application/constants';
 
-export interface MessageAction {
-    type: string;
-    value: string;
-}
-
 export const reducer = (state: Store = new Store('default text'), action: MessageAction): Store => {
     if (action.type !== SET_MESSAGE_TEXT || action.value !== action.value) {
         return state;
@@ -12,10 +7,12 @@ export const reducer = (state: Store = new Store('default text'), action: Messag
     return new Store(action.value);
 }
 
-export const setMessageAction = (message: string): MessageAction => ({
+export const setMessageAction = (message: string) => ({
     type: SET_MESSAGE_TEXT,
     value: message,
 });
+
+export type MessageAction = ReturnType<typeof setMessageAction>;
 
 export class Store {
     private _message: string;
