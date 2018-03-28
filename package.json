@@ -14,7 +14,7 @@
     "lint": "tslint src/**/*.ts",
     "tsc": "tsc",
     "jest": "jest",
-    "clean": "rimraf artifacts",
+    "clean": "rimraf lib",
     "build": "yarn run clean && yarn run tsc",
     "test": "yarn run build && yarn run jest",
     "start": "react-native-scripts start",
@@ -25,7 +25,7 @@
   "jest": {
     "preset": "react-native",
     "testMatch": [
-      "<rootDir>/artifacts/**/tests/test*.js"
+      "<rootDir>/lib/**/tests/test*.js"
     ]
   },
   "dependencies": {
