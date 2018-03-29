@@ -21,11 +21,11 @@ export const MyContainer: React.SFC<Props> = (props) => {
                 <MyButton title='Increment' onPress={() => increment(value)} />
                 <MyButton title='Decrement' onPress={() => decrement(value)} />
             </View>
-            <Output value={value} />
-            <TwiceTheOutput value={value} />
+            <Output value={value.value} />
+            <TwiceTheOutput value={value.value} />
             <View>
-                <TextInput value={text} onChangeText={(newText) => setMessage(newText)} />
-                <Output value={text} />
+                <TextInput value={text.message} onChangeText={(newText) => setMessage(newText)} />
+                <Output value={text.message} />
             </View>
         </View>
     );
