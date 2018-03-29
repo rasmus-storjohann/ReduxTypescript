@@ -1,6 +1,7 @@
 import { SET_COUNTER } from '../application/constants';
 import * as helpers from './redux-helpers';
 
+/* tslint:disable:typedef */
 const makeStore = (value: number) => ({ value });
 
 export type Store = ReturnType<typeof makeStore>;

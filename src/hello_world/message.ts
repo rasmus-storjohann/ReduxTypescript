@@ -1,10 +1,12 @@
 import { SET_MESSAGE_TEXT } from '../application/constants';
 import * as helpers from './redux-helpers';
 
+/* tslint:disable:typedef */
 const makeStore = (message: string) => ({ message });
 
 export type Store = ReturnType<typeof makeStore>;
 
+/* tslint:disable:typedef */
 export const setMessage = (message: string) => helpers.makeAction(SET_MESSAGE_TEXT, message);
 
 export type MessageAction = ReturnType<typeof setMessage>;

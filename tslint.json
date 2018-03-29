@@ -7,7 +7,7 @@
             "static-before-instance",
             "variables-before-functions"
         ],
-        "no-any": false,
+        "no-any": true,
         "no-inferrable-types": [
             false
         ],
@@ -60,7 +60,14 @@
         "no-parameter-reassignment": true,
         "typedef": [
             true,
-            "call-signature"
+            "call-signature",
+            "arrow-call-signature",
+            "parameter",
+            "arrow-parameter",
+            "property-declaration",
+            "member-variable-declaration",
+            "object-destructuring",
+            "array-destructuring"
         ],
         "readonly-keyword": true,
         "readonly-array": true,

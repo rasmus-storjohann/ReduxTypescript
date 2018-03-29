@@ -4,6 +4,7 @@ import * as counter from './counter';
 import * as message from './message';
 import { Store, Dispatch } from '../application/store';
 
+/* tslint:disable:typedef */
 const mapStateToProps = (store: Store) => ({
     counterInProps: store.counterInStore,
     messageInProps: store.messageInStore,
