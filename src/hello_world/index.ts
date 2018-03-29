@@ -4,9 +4,9 @@ import * as counter from './counter';
 import * as message from './message';
 import { Store, Dispatch } from '../application/store';
 
-const mapStateToProps = (state: Store) => ({
-    value: state.value,
-    text: state.text,
+const mapStateToProps = (store: Store) => ({
+    counterInProps: store.counterInStore,
+    messageInProps: store.messageInStore,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

@@ -3,13 +3,13 @@ import * as counter from '../hello_world/counter';
 import * as message from '../hello_world/message';
 
 export interface Store {
-    readonly value: counter.Store;
-    readonly text: message.Store;
+    readonly counterInStore: counter.Store;
+    readonly messageInStore: message.Store;
 }
 
 export const rootReducer = combineReducers({
-    value: counter.reducer,
-    text: message.reducer,
+    counterInStore: counter.reducer,
+    messageInStore: message.reducer,
 });
 
 export interface Dispatch {

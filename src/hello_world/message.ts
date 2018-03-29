@@ -5,7 +5,7 @@ const makeStore = (message: string) => ({ message });
 
 export type Store = ReturnType<typeof makeStore>;
 
-export const setMessage = (message: string) => helpers.action(SET_MESSAGE_TEXT, message);
+export const setMessage = (message: string) => helpers.makeAction(SET_MESSAGE_TEXT, message);
 
 export type MessageAction = ReturnType<typeof setMessage>;
 

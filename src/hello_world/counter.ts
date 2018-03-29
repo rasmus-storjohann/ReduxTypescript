@@ -5,9 +5,9 @@ const makeStore = (value: number) => ({ value });
 
 export type Store = ReturnType<typeof makeStore>;
 
-export const increment = (value: Store) => helpers.action(SET_COUNTER, value.value + 1);
+export const increment = (value: Store) => helpers.makeAction(SET_COUNTER, value.value + 1);
 
-export const decrement = (value: Store): SetCounterAction => helpers.action(SET_COUNTER, value.value - 1);
+export const decrement = (value: Store): SetCounterAction => helpers.makeAction(SET_COUNTER, value.value - 1);
 
 export type SetCounterAction = ReturnType<typeof increment>;
 
