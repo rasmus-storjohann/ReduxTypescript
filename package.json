@@ -11,10 +11,10 @@
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "postinstall": "bin/postinstall.sh",
-    "lint": "tslint src/**/*.ts",
+    "lint": "tslint --rules-dir node_modules/tslint-immutable/rules/ src/**/*.ts",
     "tsc": "tsc",
     "jest": "jest",
-    "clean": "rimraf lib",
+    "clean": "rm -rf lib/",
     "build": "yarn run clean && yarn run tsc",
     "test": "yarn run build && yarn run jest",
     "start": "react-native-scripts start",
@@ -41,8 +41,8 @@
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-persist": "^5.9.1",
-    "rimraf": "^2.6.2",
     "tslint": "^5.9.1",
+    "tslint-immutable": "^3.4.2",
     "typescript": "^2.7.2"
   }
 }

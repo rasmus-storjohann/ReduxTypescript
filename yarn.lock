@@ -5783,7 +5783,7 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@2, rimraf@^2.5.1, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2:
+rimraf@2, rimraf@^2.5.1, rimraf@^2.5.4, rimraf@^2.6.1:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:
@@ -6593,6 +6593,10 @@ trim@~0.0.1:
 tslib@^1.8.0, tslib@^1.8.1:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.0.tgz#e37a86fda8cbbaf23a057f473c9f4dc64e5fc2e8"
+
+tslint-immutable@^3.4.2:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/tslint-immutable/-/tslint-immutable-3.4.2.tgz#99a9ecd063322b3b1ec4e2d1f89b54072ffd16fc"
 
 tslint@^5.9.1:
   version "5.9.1"

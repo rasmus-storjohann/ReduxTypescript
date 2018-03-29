@@ -13,9 +13,6 @@
         ],
         "no-internal-module": true,
         "no-var-requires": true,
-        "typedef": [
-            false
-        ],
         "typedef-whitespace": [
             true,
             {
@@ -60,6 +57,19 @@
         "no-unused-expression": true,
         "no-use-before-declare": true,
         "no-var-keyword": true,
+        "no-parameter-reassignment": true,
+        "typedef": [
+            true,
+            "call-signature"
+        ],
+        "readonly-keyword": true,
+        "readonly-array": true,
+        "no-let": true,
+        "no-this": true,
+        "no-class": true,
+        "no-mixed-interface": true,
+        "no-expression-statement": true,
+        "no-if-statement": false,
         "radix": true,
         "switch-default": true,
         "triple-equals": [
