@@ -1,9 +1,7 @@
 import { SET_MESSAGE_TEXT } from '../application/constants';
+import * as helpers from './redux-helpers';
 
-export const setMessage = (message: string) => ({
-    type: SET_MESSAGE_TEXT,
-    payload: message,
-});
+export const setMessage = (message: string) => helpers.action(SET_MESSAGE_TEXT, message);
 
 export type MessageAction = ReturnType<typeof setMessage>;
 
@@ -19,6 +17,6 @@ export const reducer = (state: string = 'default text', action: MessageAction): 
         default:
             return state;
     }
-}
+};
 
 export type Store = string;
