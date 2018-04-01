@@ -4,12 +4,12 @@ import * as helpers from './redux-helpers';
 /* tslint:disable:typedef */
 const makeStore = (message: string) => ({ message });
 
-export type Store = ReturnType<typeof makeStore>;
+export type Store = Readonly<ReturnType<typeof makeStore>>;
 
 /* tslint:disable:typedef */
 export const setMessage = (message: string) => helpers.makeAction(SET_MESSAGE_TEXT, message);
 
-export type MessageAction = ReturnType<typeof setMessage>;
+export type MessageAction = Readonly<ReturnType<typeof setMessage>>;
 
 const isValid = (action: MessageAction): boolean => action.payload === action.payload;
 
