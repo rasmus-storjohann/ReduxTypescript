@@ -25,7 +25,7 @@
   "jest": {
     "preset": "react-native",
     "testMatch": [
-      "<rootDir>/lib/**/tests/test*.js"
+      "<rootDir>/lib/**/*.test.js"
     ]
   },
   "dependencies": {
