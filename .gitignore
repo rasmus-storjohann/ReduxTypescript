@@ -7,7 +7,8 @@
 /node_modules
 
 # compiled code
-/lib
+/lib/**/*js
+/lib/**/*map
 /coverage
 
 # misc

@@ -5,7 +5,7 @@
   "devDependencies": {
     "jest-expo": "25.0.0",
     "react-native-scripts": "1.11.1",
-    "react-test-renderer": "16.2.0",
+    "react-test-renderer": "^16.3.1",
     "redux-devtools": "^3.4.1"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -14,7 +14,7 @@
     "lint": "tslint --rules-dir node_modules/tslint-immutable/rules/ src/**/*.ts",
     "tsc": "tsc",
     "jest": "jest",
-    "clean": "rm -rf lib/",
+    "clean": "rimraf lib/**/*.js lib/**/*.js.map",
     "build": "yarn run clean && yarn run tsc",
     "test": "yarn run build && yarn run jest",
     "start": "react-native-scripts start",
