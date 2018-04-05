@@ -3,10 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "@types/enzyme": "^3.1.9",
+    "@types/enzyme-adapter-react-16": "^1.0.2",
+    "babel-jest": "^22.4.3",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.3",
+    "jest": "^22.4.3",
     "jest-expo": "25.0.0",
+    "react-dom": "^16.3.1",
     "react-native-scripts": "1.11.1",
     "react-test-renderer": "^16.3.1",
-    "redux-devtools": "^3.4.1"
+    "redux-devtools": "^3.4.1",
+    "ts-jest": "^22.4.2"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -24,6 +33,10 @@
   },
   "jest": {
     "preset": "react-native",
+    "setupTestFrameworkScriptFile": "<rootDir>lib/application/__tests__/setup_tests.js",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
     "testMatch": [
       "<rootDir>/lib/**/*.test.js"
     ]
