@@ -5,6 +5,11 @@
   "devDependencies": {
     "@types/enzyme": "^3.1.9",
     "@types/enzyme-adapter-react-16": "^1.0.2",
+    "@types/jest": "^22.2.2",
+    "@types/react": "^16.0.40",
+    "@types/react-native": "^0.52.20",
+    "@types/react-redux": "^5.0.15",
+    "@types/react-test-renderer": "^16.0.1",
     "babel-jest": "^22.4.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -15,7 +20,10 @@
     "react-native-scripts": "1.11.1",
     "react-test-renderer": "^16.3.1",
     "redux-devtools": "^3.4.1",
-    "ts-jest": "^22.4.2"
+    "ts-jest": "^22.4.2",
+    "tslint": "^5.9.1",
+    "tslint-immutable": "^3.4.2",
+    "typescript": "^2.7.2"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -42,20 +50,11 @@
     ]
   },
   "dependencies": {
-    "@types/jest": "^22.2.2",
-    "@types/react": "^16.0.40",
-    "@types/react-native": "^0.52.20",
-    "@types/react-redux": "^5.0.15",
-    "@types/react-test-renderer": "^16.0.1",
-    "concurrently": "^3.5.1",
     "expo": "^25.0.0",
     "react": "16.2.0",
     "react-native": "0.52.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
-    "redux-persist": "^5.9.1",
-    "tslint": "^5.9.1",
-    "tslint-immutable": "^3.4.2",
-    "typescript": "^2.7.2"
+    "redux-persist": "^5.9.1"
   }
 }
