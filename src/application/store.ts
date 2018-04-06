@@ -1,28 +1,18 @@
-import { combineReducers, createStore } from 'redux';
+import { createStore } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import * as counter from '../hello_world/counter';
-import * as message from '../hello_world/message';
-
-export interface Store {
-    readonly counterInStore: counter.Store;
-    readonly messageInStore: message.Store;
-}
-
-const rootReducer = combineReducers({
-    counterInStore: counter.reducer,
-    messageInStore: message.reducer,
-});
+import { Actions, rootReducer } from './combine_stores';
+export { Store } from './combine_stores';
 
 export interface Dispatch {
-    (action: counter.SetCounterAction | message.MessageAction): void;
+    (action: Actions): void;
 }
 
-const persistConfig = {
+const persistConfiguration = {
     key: 'root',
     storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfiguration, rootReducer);
 export const store = createStore(persistedReducer);
 export const persistor = persistStore(store);

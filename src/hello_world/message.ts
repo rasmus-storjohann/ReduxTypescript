@@ -11,6 +11,8 @@ export const setMessage = (message: string) => helpers.makeAction(ActionTypes.SE
 
 export type MessageAction = Readonly<ReturnType<typeof setMessage>>;
 
+export type Actions = MessageAction;
+
 const isValid = (action: MessageAction): boolean => action.payload === action.payload;
 
 export const reducer = (state: Store = makeStore('default text'), action: MessageAction): Store => {

@@ -13,6 +13,8 @@ export const decrement = (value: Store): SetCounterAction => helpers.makeAction(
 
 export type SetCounterAction = Readonly<ReturnType<typeof increment>>;
 
+export type Actions = SetCounterAction;
+
 export const reducer = (state: Store = makeStore(0), action: SetCounterAction): Store => {
     if (action.payload !== action.payload) {
         return state;
