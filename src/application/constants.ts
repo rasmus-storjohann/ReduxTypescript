@@ -1,2 +1,4 @@
-export const SET_MESSAGE_TEXT = 'SET_MESSAGE_TEXT';
-export const SET_COUNTER = 'SET_COUNTER';
+export const enum ActionTypes {
+    SET_COUNTER = 'counter#setValue',
+    SET_MESSAGE_TEXT = 'message#setMessage',
+};

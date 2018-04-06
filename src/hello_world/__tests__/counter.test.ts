@@ -1,5 +1,5 @@
 import * as counter from '../counter';
-import * as constants from '../../application/constants';
+import { ActionTypes } from '../../application/constants';
 import { aNumber } from '../../application/test_helpers/random_test_values';
 
 describe('the store creator', () => {
@@ -29,7 +29,7 @@ describe('the action for', () => {
         });
 
         it('should create action with type SET_COUNTER', () => {
-            expect(theIncrementAction.type).toBe(constants.SET_COUNTER);
+            expect(theIncrementAction.type).toBe(ActionTypes.SET_COUNTER);
         });
 
         it('should create action with payload one larger than value in the store', () => {
@@ -46,7 +46,7 @@ describe('the action for', () => {
         });
 
         it('should create action with type SET_COUNTER', () => {
-            expect(theDecrementAction.type).toBe(constants.SET_COUNTER);
+            expect(theDecrementAction.type).toBe(ActionTypes.SET_COUNTER);
         });
 
         it('should create action with payload one less than value in the store', () => {
@@ -66,7 +66,7 @@ describe('the reducer', () => {
 
     it('should return store with value from action', () => {
         var theNewNumber = aNumber();
-        var theNewStore = counter.reducer(theStore, { type: constants.SET_COUNTER, payload: theNewNumber });
+        var theNewStore = counter.reducer(theStore, { type: ActionTypes.SET_COUNTER, payload: theNewNumber });
         expect(theNewStore.value).toBe(theNewNumber);
     });
 

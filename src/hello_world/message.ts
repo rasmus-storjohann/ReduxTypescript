@@ -1,5 +1,5 @@
-import { SET_MESSAGE_TEXT } from '../application/constants';
-import * as helpers from './redux-helpers';
+import { ActionTypes } from '../application/constants';
+import * as helpers from '../application/helpers/redux-helpers';
 
 /* tslint:disable:typedef */
 const makeStore = (message: string) => ({ message });
@@ -7,7 +7,7 @@ const makeStore = (message: string) => ({ message });
 export type Store = Readonly<ReturnType<typeof makeStore>>;
 
 /* tslint:disable:typedef */
-export const setMessage = (message: string) => helpers.makeAction(SET_MESSAGE_TEXT, message);
+export const setMessage = (message: string) => helpers.makeAction(ActionTypes.SET_MESSAGE_TEXT, message);
 
 export type MessageAction = Readonly<ReturnType<typeof setMessage>>;
 
@@ -18,7 +18,7 @@ export const reducer = (state: Store = makeStore('default text'), action: Messag
         return state;
     }
     switch (action.type) {
-        case SET_MESSAGE_TEXT:
+        case ActionTypes.SET_MESSAGE_TEXT:
             return makeStore(action.payload);
         default:
             return state;
