@@ -33,7 +33,7 @@ describe('the action for', () => {
         });
 
         it('should create action with payload one larger than value in the store', () => {
-            expect(theIncrementAction.payload).toBe(theValueInTheStore + 1);
+            expect(theIncrementAction.payload.value).toBe(theValueInTheStore + 1);
         });
     });
 
@@ -50,7 +50,7 @@ describe('the action for', () => {
         });
 
         it('should create action with payload one less than value in the store', () => {
-            expect(theDecrementAction.payload).toBe(theValueInTheStore - 1);
+            expect(theDecrementAction.payload.value).toBe(theValueInTheStore - 1);
         });
     });
 });
@@ -66,14 +66,14 @@ describe('the reducer', () => {
 
     it('should return store with value from action', () => {
         var theNewNumber = aNumber();
-        var theNewStore = counter.reducer(theStore, { type: ActionTypes.SET_COUNTER, payload: theNewNumber });
+        var theNewStore = counter.reducer(theStore, { type: ActionTypes.SET_COUNTER, payload: { value: theNewNumber } });
         expect(theNewStore.value).toBe(theNewNumber);
     });
 
     it('should return store unchanged if action type is not SET_COUNTER', () => {
         var theNewNumber = aNumber();
         var wrongActionType = 'wrongActionType ';
-        var theNewStore = counter.reducer(theStore, { type: wrongActionType, payload: theNewNumber });
+        var theNewStore = counter.reducer(theStore, { type: wrongActionType, payload: { value: theNewNumber } });
         expect(theNewStore.value).toBe(theOldNumber);
     });
 
