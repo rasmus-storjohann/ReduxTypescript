@@ -1,9 +1,8 @@
 import { ActionTypes } from '../application/constants';
 import * as helpers from '../application/helpers/redux-helpers';
 
-// problem: this is public just for testing purposes
 /* tslint:disable:typedef */
-export const makeStore = (value: number) => ({ value });
+const makeStore = (value: number) => ({ value });
 
 export type Store = Readonly<ReturnType<typeof makeStore>>;
 
@@ -15,8 +14,8 @@ export type SetCounterAction = Readonly<ReturnType<typeof increment>>;
 
 export type Actions = SetCounterAction;
 
-export const reducer = (state: Store = makeStore(0), action: SetCounterAction): Store => {
-    if (action.payload !== action.payload) {
+export const reducer = (state: Store = makeStore(0), action?: SetCounterAction): Store => {
+    if (!action) {
         return state;
     }
     switch (action.type) {
