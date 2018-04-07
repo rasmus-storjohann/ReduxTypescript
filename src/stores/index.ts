@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import * as counter from '../hello_world/counter';
-import * as message from '../hello_world/message';
+import * as counter from './counter';
+import * as message from './message';
 
 export interface Store {
     readonly counterInStore: counter.Store;

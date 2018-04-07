@@ -1,8 +1,8 @@
 import { Output, TwiceTheOutput, MyButton, Greeting } from './components';
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import * as counter from './counter';
-import * as message from './message';
+import * as counter from '../stores/counter';
+import * as message from '../stores/message';
 
 interface Props {
     counterInProps: counter.Store;

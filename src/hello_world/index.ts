@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { MyContainer } from './containers';
-import * as counter from './counter';
-import * as message from './message';
+import * as counter from '../stores/counter';
+import * as message from '../stores/message';
 import { Store, Dispatch } from '../application/store';
 
 /* tslint:disable:typedef */
