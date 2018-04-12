@@ -1,11 +1,12 @@
 import * as counter from '../counter';
-import { ActionTypes } from '../../application/constants';
+import * as constants from '../../application/constants';
+import * as helpers from '../../application/helpers/redux-helpers';
 import { aNumber } from '../../application/test_helpers/random_test_values';
 
 let buildStore = () => counter.reducer(undefined, undefined);
 
 let buildStoreWithValue = (value: number) => {
-    const action = { type: ActionTypes.SET_COUNTER, payload: { value } };
+    const action = helpers.makeAction(constants.SET_COUNTER, { value });
     return counter.reducer(undefined, action);
 };
 
@@ -16,7 +17,7 @@ describe('the action for', () => {
         it('should create action with type SET_COUNTER', () => {
             const theStore = buildStore();
             const theIncrementAction = counter.increment(theStore);
-            expect(theIncrementAction.type).toBe(ActionTypes.SET_COUNTER);
+            expect(theIncrementAction.type).toBe(constants.SET_COUNTER);
         });
 
         it('should create action with payload one larger than value in the store', () => {
@@ -32,7 +33,7 @@ describe('the action for', () => {
         it('should create action with type SET_COUNTER', () => {
             const theStore = buildStore();
             const theDecrementAction = counter.decrement(theStore);
-            expect(theDecrementAction.type).toBe(ActionTypes.SET_COUNTER);
+            expect(theDecrementAction.type).toBe(constants.SET_COUNTER);
         });
 
         it('should create action with payload one less than value in the store', () => {
@@ -40,6 +41,14 @@ describe('the action for', () => {
             const theStore = buildStoreWithValue(aValue);
             const theDecrementAction = counter.decrement(theStore);
             expect(theDecrementAction.payload.value).toBe(aValue - 1);
+        });
+    });
+
+    describe('reset', () => {
+
+        it('should create action with type RESET_COUNTER', () => {
+            const theDecrementAction = counter.reset();
+            expect(theDecrementAction.type).toBe(constants.RESET_COUNTER);
         });
     });
 });
@@ -50,18 +59,23 @@ describe('the reducer', () => {
         expect(theStore.value).toBe(0);
     });
 
-    it('should return store with value from action', () => {
+    it('when called with SET_COUNTER should return store with value from action', () => {
         const theStore = buildStore();
-        const theAction = { type: ActionTypes.SET_COUNTER, payload: { value: aNumber() } };
+        const theAction = {
+            type: constants.SET_COUNTER as typeof constants.SET_COUNTER,
+            payload: { value: aNumber() }
+        };
         const theNewStore = counter.reducer(theStore, theAction);
         expect(theNewStore.value).toBe(theAction.payload.value);
     });
 
-    it('should return store unchanged if action type is not recognized', () => {
-        const theOriginalStore = buildStoreWithValue(aNumber());
-        const theAction = { type: 'wrongActionType', payload: { value: aNumber() } };
-        const theNewStore = counter.reducer(theOriginalStore, theAction);
-        expect(theNewStore.value).toBe(theOriginalStore.value);
+    it('when called with RESET_COUNTER should return store with value of zero', () => {
+        const theStore = buildStore();
+        const theAction = {
+            type: constants.RESET_COUNTER as typeof constants.RESET_COUNTER
+        };
+        const theNewStore = counter.reducer(theStore, theAction);
+        expect(theNewStore.value).toBe(0);
     });
 
     it('should return store unchanged if action is undefined', () => {

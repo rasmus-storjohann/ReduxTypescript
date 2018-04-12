@@ -107,7 +107,7 @@ TypeScript and snapshots don't play really well together, since the snapshots en
 }
 ```
 
-Likewise I had to update `.gitignore` so that I could commit the snapshot files:
+Likewise I had to update `.gitignore` so that I could commit the snapshot files, so rather than ignoring all of `/lib`, I have:
 
 ```
 /lib/**/*js
@@ -116,7 +116,7 @@ Likewise I had to update `.gitignore` so that I could commit the snapshot files:
 
 The snapshots are written to a folder called `__snapshots__`, so for consistency I've had to stick with the conventional name `__tests__` for test folders. I was hoping to buck that convention and use `tests`, but that's probably just good for my OCD.
 
-# redux-persist
+## redux-persist
 
 For local storage, I'm using redux-persist, which saves the redux store directly to local storage. 
 

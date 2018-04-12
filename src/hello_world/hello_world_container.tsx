@@ -4,15 +4,18 @@ import { View, TextInput } from 'react-native';
 import * as counter from '../stores/counter';
 import * as message from '../stores/message';
 
-interface Props {
-    counterInProps: counter.Store;
-    messageInProps: message.Store;
-    increment: (prop: counter.Store) => void;
-    decrement: (prop: counter.Store) => void;
-    setMessage: (message: string) => void;
-}
+export interface Props {
+    counterInProps: counter.Store,
+    messageInProps: message.Store,
+};
 
-export const MyContainer: React.SFC<Props> = (props) => {
+export interface Actions {
+    increment(store: counter.Store): counter.SetCounterAction;
+    decrement(store: counter.Store): counter.SetCounterAction;
+    setMessage(newMessage: string): message.MessageAction;
+};
+
+export const HelloWorldContainer: React.StatelessComponent<Props & Actions> = (props) => {
     const { counterInProps, messageInProps, increment, decrement, setMessage } = props;
     return (
         <View style={{ alignItems: 'center' }}>
@@ -27,6 +30,6 @@ export const MyContainer: React.SFC<Props> = (props) => {
                 <TextInput value={messageInProps.message} onChangeText={(text) => setMessage(text)} />
                 <Output value={messageInProps.message} />
             </View>
-        </View>
+        </View >
     );
 };

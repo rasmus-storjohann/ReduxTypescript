@@ -1,4 +1,4 @@
-export const enum ActionTypes {
-    SET_COUNTER = 'counter#setValue',
-    SET_MESSAGE_TEXT = 'message#setMessage',
-}
+export const SET_COUNTER = 'COUNTER:SET_COUNTER';
+export const RESET_COUNTER = 'COUNTER:RESET_COUNTER';
+
+export const SET_MESSAGE_TEXT = 'MESSAGE:SET_MESSAGE';

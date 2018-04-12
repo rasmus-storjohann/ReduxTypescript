@@ -1,19 +1,19 @@
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { MyContainer } from './containers';
+import { Props, Actions, HelloWorldContainer } from './hello_world_container';
 import * as counter from '../stores/counter';
 import * as message from '../stores/message';
-import { Store, Dispatch } from '../application/store';
+import { Store } from '../application/store';
 
-/* tslint:disable:typedef */
-const mapStateToProps = (store: Store) => ({
+const mapStateToProps = (store: Store): Props => ({
     counterInProps: store.counterInStore,
     messageInProps: store.messageInStore,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    increment: (prop: counter.Store) => dispatch(counter.increment(prop)),
-    decrement: (prop: counter.Store) => dispatch(counter.decrement(prop)),
-    setMessage: (newMessage: string) => dispatch(message.setMessage(newMessage)),
+const mapDispatchToProps = (dispatch: Dispatch<Store>): Actions => ({
+    increment: (prop: counter.Store): counter.SetCounterAction => dispatch(counter.increment(prop)),
+    decrement: (prop: counter.Store): counter.SetCounterAction => dispatch(counter.decrement(prop)),
+    setMessage: (aMessage: string): message.MessageAction => dispatch(message.setMessage(aMessage)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(HelloWorldContainer);
