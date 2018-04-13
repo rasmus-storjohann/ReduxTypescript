@@ -11,8 +11,8 @@ const mapStateToProps = (store: Store): Props => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Store>): Actions => ({
-    increment: (prop: counter.Store): counter.SetCounterAction => dispatch(counter.increment(prop)),
-    decrement: (prop: counter.Store): counter.SetCounterAction => dispatch(counter.decrement(prop)),
+    increment: (aCounter: counter.Store): counter.SetCounterAction => dispatch(counter.increment(aCounter)),
+    decrement: (aCounter: counter.Store): counter.SetCounterAction => dispatch(counter.decrement(aCounter)),
     setMessage: (aMessage: string): message.MessageAction => dispatch(message.setMessage(aMessage)),
 });
 

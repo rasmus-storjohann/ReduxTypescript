@@ -1,10 +1,12 @@
-## Stay DRY: Defining action and store types using ReturnType<T>
+# Dry redux
 
-Redux tends to require a lot of boilerplate code, and many different approaches have been proposed to manage this problem. Typescript's `ReturnType<T>` makes this pretty easy to do. 
+## Defining redux actions and store using ReturnType<T>
 
-Redux encourages us to work in a functional style where values are computed once and never changed (mutated) later. In Javascript where everything is mutable, it is easy to introduce bugs by changing data we shouldn't. Immutable.js is a widely used library designed to stop us from changing state, but it has its own drawbacks. Typescript has `readonly` modifier on data and the `Readonly<T>` helper. These enforce immutability at compile time with no run time impact, which means that unlike with `immutable.js` we can work with plain javascript objects.
+Redux tends to require a lot of boilerplate code, and many different approaches have been proposed to manage this problem. I find that Typescript's `ReturnType<T>` makes this pretty easy to do. 
 
-With `ReturnType<T>` and `Readonly<T>`, the `increment()` action and action generator can be defined without any repetion:
+Redux encourages us to work in a functional style where values are computed once and never changed (mutated) later. In Javascript everything is mutable, so it's easy to introduce bugs by changing state where we shouldn't. Immutable.js is a widely used library designed to stop us from changing state, but it has its own drawbacks. Typescript has the `readonly` modifier and the `Readonly<T>` helper. These enforce immutability at compile time with no run time impact, which means that unlike with `immutable.js` we can work with plain javascript objects.
+
+With these tools, the `increment()` action and action generator can be defined without any repetion:
 
 ```ts
 export const increment = (store: Store) => (
@@ -22,7 +24,7 @@ The same approach can be used to define the Store type for the counter. Now the 
 export type Store = Readonly<ReturnType<typeof reducer>>; // won't work
 ```
 
-Unfortunately, the reducer also takes a Store as argument, so this creates a circular dependency. Instead, we can have a helper function which builds the default (empty) store, and use that function both to define the Store type and the default value for the store argument to the reducer:
+Unfortunately, the reducer also takes a Store as argument, so this creates a circular dependency. Instead, we can have a helper function which builds the default (empty) store, and use that function to define the Store type and also call it in the reducer:
 
 ```ts
 const buildDefaultStore = () => (
@@ -36,16 +38,15 @@ export const reducer = (store: Store = buildDefaultStore(), action?: SetCounterA
 }
 ```
 
-If you're using TsLint with the `typedef:arrow-call-signature` rule enabled, TsLint will complain about `increment()` and `buildDefaultStore()`, because neither function defines its return type. They can't because we're using each to define the type using `ReturnType<T>`. To calm down TsLint, put the comment `// tslint:disable-next-line:typedef` above the functions.
+If you're using TsLint with the `typedef:arrow-call-signature` rule enabled, TsLint will complain about `increment()` and `buildDefaultStore()`, because neither function define a return type. They can't because we're using each to define the type using `ReturnType<T>`. Put the comment `// tslint:disable-next-line:typedef` above the functions to make those warnings go away.
 
-If we insist on always defining functions and types before referencing them, the store files can be a bit messy, with action creators and action types interspersed. Javascript hoisting allows us to reference types before they are defined so that we can arrange the different elements of the file in any order we like, such as putting the types up top, followed by the actions, and the reducer at the end.
+If we try to always define functions and types before referencing them, the store files can be a bit messy, with action creators and action types interspersed. Javascript hoisting allows us to reference types before they are defined so that we can arrange the different elements of the file in any order we like, such as putting the types up top, followed by the actions, and the reducer at the end.
 
 ## Discriminated unions for types
 
-Ideally, we want the action types to be [tagged union](https://blog.mariusschulz.com/2016/11/03/typescript-2-0-tagged-union-types) types. In order to demonstrate the value of this, I will add a bit of functionality to the counter example, with one more action type reset, which should set the counter to zero:
+Ideally, we want the action types to be [tagged unions](https://blog.mariusschulz.com/2016/11/03/typescript-2-0-tagged-union-types). In order to demonstrate the value of this, I will add a bit of functionality to the counter example, with one more action type reset with no payload. This action sets the counter to zero:
 
 ```ts
-// tslint:disable-next-line:typedef
 export const reset = () => (
     {type: constants.RESET_COUNTER}
 );
@@ -53,7 +54,7 @@ export const reset = () => (
 export type ResetCounterAction = Readonly<ReturnType<typeof reset>>;
 ```
 
-While the `SetCounterAction` has a `value` in the payload, `ResetCounterAction` has no payload at all. We now have to handle the two different action types in the reducer:
+We now have to handle the two different action types in the reducer:
 
 ```ts
 export const reducer = (store: Store = buildDefaultStore(), 
@@ -72,13 +73,14 @@ export const reducer = (store: Store = buildDefaultStore(),
 };
 
 ```
-But now I get a compilation error:
+This gives a compilation error:
 
 ```
-src/stores/counter.ts(32,46): error TS2339: Property 'payload' does not exist on type 'Readonly<{ type: string; payload: { value: number; }; }> | Readonly<{ type: string; }>'.
+src/stores/counter.ts(32,46): error TS2339: Property 'payload' does not exist on type 
+'Readonly<{ type: string; payload: { value: number; }; }> | Readonly<{ type: string; }>'.
 ```
 
-_We_ know that the payload is there when the type is equal to `constants.SET_COUNTER`, but at this point the compiler doesn't. We _could_ cast the action to the correct type in the reducer, but there is a much better way: with a magic `makeAction()` helper function, the compiler error goes away:
+I know that the payload is there when the type is equal to `constants.SET_COUNTER`, but how to explain this to the compiler? We _could_ cast the action to the correct type in the reducer, but there is a much better way: with this helper function the compiler error goes away:
 
 ```
 export interface Action<T extends string> { type: T };
@@ -92,7 +94,7 @@ export function makeAction<T extends string, P>(type: T, payload?: P) {
 
 ```
 
-When actions are created using makeAction(), the compiler knows that when the _value_ of `action.type` is `constants.SET_COUNTER`, then the _type_ of payload is `{ value: number }`, but when the _value_ of `action.type` is `constants.RESET_COUNTER`, then there is no payload. No casts needed.
+When actions are created using `makeAction()`, the compiler knows that when the _value_ of `action.type` is `constants.SET_COUNTER`, then the _type_ of payload is `{ value: number }`, but when the _value_ of `action.type` is `constants.RESET_COUNTER`, then there is no payload. No casts needed!
 
 So this is the counter store in its entirety:
 
@@ -123,7 +125,8 @@ const buildDefaultStore = () => (
     { value: 0 }
 );
 
-export const reducer = (store: Store = buildDefaultStore(), action?: SetCounterAction | ResetCounterAction): Store => {
+export const reducer = (store: Store = buildDefaultStore(), 
+                        action?: SetCounterAction | ResetCounterAction): Store => {
     if (!action) {
         return store;
     }
@@ -140,7 +143,9 @@ export const reducer = (store: Store = buildDefaultStore(), action?: SetCounterA
 
 ## Scaling up the store
 
-Enforcing separation of concerns in the store will likely lead to a Store type with a number of sub-stores for different parts of the application domain. This means that calls to combineReducers() could end up taking a lot of arguments. I want to have a single file that comines all the sub-stores into one. This file should be the only piece in the architecture that knows about all the different sub-stores. This is what I've come up with for the example of just two stores, but it looks like it should be able to expand easily:
+Separating concerns in the store leads to a root `Store` type with a number of sub-stores for different parts of the application domain. This means that the call to `combineReducers()` could end up taking a lot of arguments. 
+
+I want to have a single file that comines all the sub-stores into one and does nothing else. This file should be the only place in the architecture that knows about all the different sub-stores. This approach looks like it should be able to scale up easily:
 
 ```ts
 import { combineReducers } from 'redux';
@@ -157,7 +162,4 @@ export const rootReducer = combineReducers({
     messageInStore: message.reducer,
 });
 ```
-
-For this to work, each sub-store should be in its own file, and each sub-store should export their store type and their reducer function. (The store files also export their actions, but those are not used here).
-
 
